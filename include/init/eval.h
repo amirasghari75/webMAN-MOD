@@ -14,6 +14,9 @@ extern long int stdc_D14ECE90(const char *str, char **endptr, int base);        
 extern uint64_t stdc_36C067C1(const char *a, char **b, int x);                        // _Stoll
 #define _Stoll stdc_36C067C1
 
+extern uint64_t stdc_D417EEB5(const char *a, char **b, int x);                        // _Stoull()
+#define _Stoull stdc_D417EEB5
+
 static char h2a(const char hex) // hex byte to ascii char
 {
 	char c = (unsigned char)hex;
@@ -41,7 +44,7 @@ static u64 convertH(const char *val) // convert hex string to unsigned integer 6
 	if(islike(val, "0x")) val += 2;
 
 	char *end;
-	return _Stoll(val, &end, 16);
+	return _Stoull(val, &end, 16);
 /*
 	u64 ret = 0; u8 n = 0, c;
 
