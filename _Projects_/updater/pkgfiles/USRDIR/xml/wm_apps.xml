@@ -95,6 +95,26 @@
 				<P key="title"><>Ultimate Toolbox v2.03 FULL 4.89-4.92</></P>
 				<P key="info"><>484 MB</></P>
 			</T>
+			<T key="app030" include="inc">
+				<P key="title"><>File Manager by mohasi</></P>
+				<P key="info"><>807 KB</></P>
+			</T>
+			<T key="app031" include="inc">
+				<P key="title"><>Yo! Player by mohasi</></P>
+				<P key="info"><>397 KB</></P>
+			</T>
+			<T key="app032" include="inc">
+				<P key="title"><>RenPy Player by mohasi</></P>
+				<P key="info"><>307 KB</></P>
+			</T>
+			<T key="app033" include="inc">
+				<P key="title"><>Cell Stream by mohasi</></P>
+				<P key="info"><>240 KB</></P>
+			</T>
+			<T key="app034" include="inc">
+				<P key="title"><>Thermal Bench by mohasi</></P>
+				<P key="info"><>168 KB</></P>
+			</T>
 			<T key="appPSH" include="inc">
 				<P key="title"><>PlayStation Home Online</></P>
 				<P key="info"><>42.9 MB | Use DNS: 104.37.190.154 | Domain: pshomeologylab.net</></P>
@@ -129,8 +149,16 @@
 			<Q class="type:x-xmb/folder-pixmap" key="app014" attr="app014" src="#app014_link"/><!-- Artemis GUI [Cheats] -->
 			<Q class="type:x-xmb/folder-pixmap" key="app015" attr="app015" src="#app015_link"/><!-- PKGi -->
 			<Q class="type:x-xmb/folder-pixmap" key="app016" attr="app016" src="#app016_link"/><!-- PS3 ezRemote Client -->
+
+			<Q class="type:x-xmb/folder-pixmap" key="app030" attr="app030" src="#app030_link"/><!-- File Manager by mohasi -->
+			<Q class="type:x-xmb/folder-pixmap" key="app031" attr="app031" src="#app031_link"/><!-- Yo! Player by mohasi -->
+			<Q class="type:x-xmb/folder-pixmap" key="app032" attr="app032" src="#app032_link"/><!-- RenPy Player by mohasi -->
+			<Q class="type:x-xmb/folder-pixmap" key="app033" attr="app033" src="#app033_link"/><!-- Cell Stream by mohasi -->
+			<Q class="type:x-xmb/folder-pixmap" key="app034" attr="app034" src="#app034_link"/><!-- Thermal Bench by mohasi -->
+
 			<!-- <Q class="type:x-xmb/folder-pixmap" key="app017" attr="app017" src="#app017_link"/>Ultimate Toolbox v2.03 FULL 4.84-4.88-->
 			<!-- <Q class="type:x-xmb/folder-pixmap" key="app018" attr="app018" src="#app018_link"/>Ultimate Toolbox v2.03 FULL 4.89-4.92-->
+
 			<Q class="type:x-xmb/folder-pixmap" key="appPSH" attr="appPSH" src="#appPSH_link"/><!-- PS Home Online -->
 			<Q class="type:x-xmb/folder-pixmap" key="app019" attr="app019" src="#app019_link"/><!-- Load webMAN MOD -->
 			<Q class="type:x-xmb/folder-pixmap" key="app020" attr="app020" src="#app020_link"/><!-- webMAN MOD Installer -->
@@ -386,6 +414,77 @@
 				<P key="pkg_src_qa"><>https://github.com/aldostools/Resources/releases/download/Addons/ps3-ezremote-client.pkg</></P>
 				<P key="content_name"><>msg_install</></P>
 				<P key="content_id"><>UP0001-RMTC00001_00-0000000000000000</></P>
+				<P key="prod_pict_path"><>/dev_hdd0//game/XMBMANPLS/USRDIR/IMAGES/package.png</></P>
+			</T>
+		</A>
+		<I><Item class="type:x-xmb/xmlnpsignup" key="pkg_link" attr="pkg_link"/></I>
+	</V>
+
+	<!-- File Manager by mohasi -->
+	<V id="app030_link">
+		<A>
+			<T key="pkg_link">
+				<P key="info"><>net_package_install</></P>
+				<P key="pkg_src"><>https://github.com/aldostools/Resources/releases/download/Addons/mohasi-file-manager.pkg</></P>
+				<P key="pkg_src_qa"><>https://github.com/aldostools/Resources/releases/download/Addons/mohasi-file-manager.pkg</></P>
+				<P key="content_name"><>msg_install</></P>
+				<P key="content_id"><>HB0001-FILEMGR01_00-FILEMANAGERHB001</></P>
+				<P key="prod_pict_path"><>/dev_hdd0//game/XMBMANPLS/USRDIR/IMAGES/package.png</></P>
+			</T>
+		</A>
+		<I><Item class="type:x-xmb/xmlnpsignup" key="pkg_link" attr="pkg_link"/></I>
+	</V>
+	<!-- Yo! Player by mohasi -->
+	<V id="app031_link">
+		<A>
+			<T key="pkg_link">
+				<P key="info"><>net_package_install</></P>
+				<P key="pkg_src"><>https://github.com/aldostools/Resources/releases/download/Addons/mohasi-yo-player.pkg</></P>
+				<P key="pkg_src_qa"><>https://github.com/aldostools/Resources/releases/download/Addons/mohasi-yo-player.pkg</></P>
+				<P key="content_name"><>msg_install</></P>
+				<P key="content_id"><>HB0001-YOPLAYER1_00-YOPLAYERHB000001</></P>
+				<P key="prod_pict_path"><>/dev_hdd0//game/XMBMANPLS/USRDIR/IMAGES/package.png</></P>
+			</T>
+		</A>
+		<I><Item class="type:x-xmb/xmlnpsignup" key="pkg_link" attr="pkg_link"/></I>
+	</V>
+	<!-- RenPy Player by mohasi -->
+	<V id="app032_link">
+		<A>
+			<T key="pkg_link">
+				<P key="info"><>net_package_install</></P>
+				<P key="pkg_src"><>https://github.com/aldostools/Resources/releases/download/Addons/mohasi-renpy-player.pkg</></P>
+				<P key="pkg_src_qa"><>https://github.com/aldostools/Resources/releases/download/Addons/mohasi-renpy-player.pkg</></P>
+				<P key="content_name"><>msg_install</></P>
+				<P key="content_id"><>HB0002-RENPLAY01_00-RENPYPLAYERHB001</></P>
+				<P key="prod_pict_path"><>/dev_hdd0//game/XMBMANPLS/USRDIR/IMAGES/package.png</></P>
+			</T>
+		</A>
+		<I><Item class="type:x-xmb/xmlnpsignup" key="pkg_link" attr="pkg_link"/></I>
+	</V>
+	<!-- Cell Stream by mohasi -->
+	<V id="app033_link">
+		<A>
+			<T key="pkg_link">
+				<P key="info"><>net_package_install</></P>
+				<P key="pkg_src"><>https://github.com/aldostools/Resources/releases/download/Addons/mohasi-cell-stream.pkg</></P>
+				<P key="pkg_src_qa"><>https://github.com/aldostools/Resources/releases/download/Addons/mohasi-cell-stream.pkg</></P>
+				<P key="content_name"><>msg_install</></P>
+				<P key="content_id"><>HB0001-CELSTRM01_00-CELLSTREAMHB0001</></P>
+				<P key="prod_pict_path"><>/dev_hdd0//game/XMBMANPLS/USRDIR/IMAGES/package.png</></P>
+			</T>
+		</A>
+		<I><Item class="type:x-xmb/xmlnpsignup" key="pkg_link" attr="pkg_link"/></I>
+	</V>
+	<!-- Thermal Bench by mohasi -->
+	<V id="app034_link">
+		<A>
+			<T key="pkg_link">
+				<P key="info"><>net_package_install</></P>
+				<P key="pkg_src"><>https://github.com/aldostools/Resources/releases/download/Addons/mohasi-thermal-bench.pkg</></P>
+				<P key="pkg_src_qa"><>https://github.com/aldostools/Resources/releases/download/Addons/mohasi-thermal-bench.pkg</></P>
+				<P key="content_name"><>msg_install</></P>
+				<P key="content_id"><>HB0001-THERMAL01_00-THERMALBENCH0001</></P>
 				<P key="prod_pict_path"><>/dev_hdd0//game/XMBMANPLS/USRDIR/IMAGES/package.png</></P>
 			</T>
 		</A>
