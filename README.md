@@ -21,15 +21,15 @@ and artists that collaborated with development, knowledge, resources, feedback &
 
 ## Current functionality
 ### General
-- Support on all custom firmwares with Cobra feature enabled (ver 4.46-4.92 CEX, DEX & DECR)
-- Support on Evilnat firmware (ver 4.87.2-4.92 CEX, DEX, PEX, D-PEX)
+- Support on all custom firmwares with Cobra feature enabled (ver 4.46-4.93 CEX, DEX & DECR)
+- Support on Evilnat firmware (ver 4.87.2-4.93 CEX, DEX, PEX, D-PEX)
 - Support on REBUG firmware with Cobra feature disabled (ver 4.84.2-4.86.1 CEX, DEX & DECR) 
 - Support on REBUG firmware with Mamba loaded via boot_plugins_nocobra_kernel.txt (ver 4.86.1 CEX & 4.84.2 DEX) 
-- Support on PS3HEN on 4.82-4.84 OFW CEX & DEX and 4.84-4.92 HFW
-- Support on [PS3HEN](https://www.brewology.com/?p=4838) on 4.82-4.84 OFW CEX & DEX and 4.84-4.92 HFW
-- Support on classic custom firmware with Mamba loaded via IRISMAN (ver 3.41-4.92 CEX, DEX & DECR)
-- Support on classic custom firmware with Mamba/PRXLoader (ver 3.41-4.92 CEX, DEX & DECR)
-- Support on classic custom firmware with PRXLoader (ver 3.41-4.92 CEX, DEX & DECR)
+- Support on PS3HEN on 4.82-4.84 OFW CEX & DEX and 4.84-4.93 HFW
+- Support on [PS3HEN](https://www.brewology.com/?p=4838) on 4.82-4.84 OFW CEX & DEX and 4.84-4.93 HFW
+- Support on classic custom firmware with Mamba loaded via IRISMAN (ver 3.41-4.93 CEX, DEX & DECR)
+- Support on classic custom firmware with Mamba/PRXLoader (ver 3.41-4.93 CEX, DEX & DECR)
+- Support on classic custom firmware with PRXLoader (ver 3.41-4.93 CEX, DEX & DECR)
 
 - All PS3 Models (including all fat, Slim 20xx, 21xx, 25xx, 3xxx & SuperSlims 4xxx) are supported via [PS3HEN payload](http://ps3xploit.me)
 - All PS3 Models capable to downgrade to 3.56 or lower are supported via [BGToolset](http://ps3toolset.com) or PS3Xploit Flash Writer [[4.85](https://github.com/ps3xploit/flash-writer)] | [[4.90-4.91](https://aldostools.github.io/flashwriter)]<br>
@@ -215,14 +215,16 @@ and artists that collaborated with development, knowledge, resources, feedback &
 ## Addons
 - [Covers Pack for PS3 games](https://github.com/aldostools/Resources/releases/download/1.0/EP0001-BLES80608_00-COVERS0000000000.pkg)
 - [Covers Pack for PSX/PS2 games](https://github.com/aldostools/Resources/releases/download/1.0/EP0001-BLES80608_00-COVERS00000RETRO.pkg)
+- [Covers Pack for PSX/PS2 games in 3D perspective](https://github.com/aldostools/Resources/releases/download/1.0/EP0001-BLES80608_00-COVERS000000003D.pkg)
+- [Covers Pack for PSP games](https://github.com/aldostools/Resources/releases/download/1.0/EP0001-BLES80608_00-COVERS0000000PSP.pkg)
 
 - [prepISO](https://store.brewology.com/get/homebrew.php?id=310&fid=2188) : tool that scans content stored in exFAT/NTFS/ext2/3/4 devices and prepare the settings files needed by RAWSECISO plugin
-- [ps3netsrv](https://github.com/aldostools/webMAN-MOD/wiki/~-PS3-NET-Server) : Remote content distribution server for PC and linux platforms that uses Cobra's NETISO protocol for streaming of content
+- [ps3netsrv](https://github.com/aldostools/ps3netsrv/releases) : Remote content distribution server for PC and linux platforms that uses Cobra's NETISO protocol for streaming of content
 - [PKG/ROM Launcher](https://store.brewology.com/get/homebrew.php?id=310&fid=2183) : allows the execution of PS3 applications and ROMS via RetroArch. Requires that the debug icon "★ app_home/PS3_GAME" be present on XMB
 - [PS2CONFIG](https://store.brewology.com/get/homebrew.php?id=310&fid=2178) : Database of PS2 CONFIG files needed to improve the compatibility of certain PS2 games
 - [WM Themes](https://store.brewology.com/ahomebrew.php?brewid=310) : Set of packages that customize the look of the XMB icons used by webMAN MOD
 - [Reload XMB](https://store.brewology.com/get/homebrew.php?id=310&fid=2184) : PS3 application that forces the reload of XMB icons
-- [Boot MAMBA](https://github.com/aldostools/webMAN-MOD/releases) : Package that installs MAMBA payload for use on Rebug 4.84-4.92 with Cobra disabled
+- [Boot MAMBA](https://github.com/aldostools/webMAN-MOD/releases) : Package that installs MAMBA payload for use on Rebug 4.84-4.93 with Cobra disabled
 
 - [PS2 Classics Launcher](https://store.brewology.com/get/homebrew.php?id=310&fid=2187) : PS3 application required to launch PS2 Classics games in .BIN.ENC format
 - [PSP Remasters Launcher](https://store.brewology.com/get/homebrew.php?id=310&fid=2186) : PS3 application required to launch PSP Remaster games in ISO format
@@ -234,7 +236,7 @@ and artists that collaborated with development, knowledge, resources, feedback &
 - [IRISMAN](https://store.brewology.com/ahomebrew.php?brewid=250) : Optional. Use for dump ISO, download covers, advanced file management
 - [Artemis](https://store.brewology.com/ahomebrew.php?brewid=291) : Optional. Use for select cheats for the built-in Artemis patch engine.
 
-- webPAD : [http://pad.aldostools.org](http://pad.aldostools.org) - Online virtual game pad
+- webPAD : [http://pad.aldostools.org](http://pad.aldostools.org) - Online virtual game pad or use `/pad.html` on your PS3 web server.
 
 ## How to build
 Requirements for Windows:
@@ -330,7 +332,7 @@ the software.
 
 
 
-(C) 2010-2025 multiMAN / webMAN / sMAN / sLaunch / prepNTFS by DeanK
+(C) 2010-2026 multiMAN / webMAN / sMAN / sLaunch / prepNTFS by DeanK
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation files
