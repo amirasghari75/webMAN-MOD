@@ -799,8 +799,8 @@ static bool scan_mygames_xml(u64 conn_s_p)
 	// remove paths not listed in roms_paths.txt
 	{
 		char *roms_paths = templn;
-		u16 len = read_file(WM_ROMS_PATHS, roms_paths, 640, 0);
-		if((len > 0) && (len != 632))
+		u16 len = read_file(WM_ROMS_PATHS, roms_paths, 1023, 0);
+		if((len > 0) && (len != 731))
 		{
 			roms_paths[len] = '\0'; to_upper(roms_paths);
 			for(u8 i = 0; i < ROM_PATHS; i++)
