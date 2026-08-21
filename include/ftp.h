@@ -1004,8 +1004,13 @@ static void handleclient_ftp(u64 conn_s_ftp_p)
 							#endif
 								cellFsClosedir(fd);
 
-							get_cpursx(cpursx); cpursx[7] = cpursx[20] = ' ';
+							// get current PS3 temperature
+							get_cpursx(cpursx);
 
+							// remove non-ansi characters (like degree symbol) that break file listing on FileZilla and other FTP clients
+							{char *c = cpursx, *n = cpursx; for(;*n; n++) if(BETWEEN(' ', *n, '~')) *c = *n, ++c; *c = '\0';}
+
+							// send FTP command successful message, free size and current temperature 
 							if(is_root)
 							{
 								sprintf(buffer, "%d [/] [%s]\r\n", is_MLST ? 250 : 226, cpursx);
