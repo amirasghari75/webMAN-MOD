@@ -273,7 +273,7 @@ copy_ps2iso_to_hdd0:
 				{
 					cellFsUnlink(TMP_DIR "/loadoptical"); //Cobra 8.x
 
-					#ifndef LITE_EDITION
+					//#ifndef LITE_EDITION
 					// Auto-copy CONFIG from ManaGunZ
 					concat2(full_path, iso_list[0], ".CONFIG");
 					if(!webman_config->ps2config && not_exists(full_path))
@@ -314,7 +314,7 @@ copy_ps2iso_to_hdd0:
 
 						if(file_exists(full_path)) {do_umount(false); wait_path("/dev_bdvd", 5, false);} else mount_unk = EMU_PS2_CD; // prevent mount ISO again if CONFIG was not created
 					}
-					#endif
+					//#endif
 
 					// mount PS2 ISO
 					if(mount_unk == EMU_PS2_DVD)
@@ -322,7 +322,7 @@ copy_ps2iso_to_hdd0:
 
 					// create "wm_noscan" to avoid re-scan of XML returning to XMB from PS2
 					create_file(WM_NOSCAN_FILE);
-
+ 
 					if(mount_unk == EMU_PS2_CD) goto exit_mount; // don't call cobra_send_fake_disc_insert_event again
 				}
 				else
