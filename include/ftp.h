@@ -140,7 +140,7 @@ static int str_num_length(const char *ptr, int max_digits)
 		if(ptr[len] < '0' || ptr[len] > '9') return len;
 	}
 
-	return 0;
+	return max_digits;
 }
 
 // Returns long from a string limited to max number of digits
