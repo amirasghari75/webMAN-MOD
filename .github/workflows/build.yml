@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/ps3dev/ps3dev:latest   # PSL1GHT toolchain preinstalled
+      image: ghcr.io/ps3dev/ps3toolchain:ubuntu-latest  # PSL1GHT toolchain preinstalled
 
     steps:
       - name: Checkout
