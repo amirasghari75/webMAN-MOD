@@ -1,51 +1,52 @@
-name: build-webman-mod (PSL1GHT)
+name: Build webMAN MOD (Auto-Hunter)
 
 on:
-  workflow_dispatch: {}
-
-# 👇 allow pulling images from ghcr.io
-permissions:
-  contents: read
-  packages: read
+  push:
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: aldostools/ps3dev:latest  # PSL1GHT toolchain preinstalled
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    - name: Checkout Repo
+      uses: actions/checkout@v3
+      with:
+        submodules: true
 
-      - name: Ensure sLaunch cap is 4000
-        run: |
-          set -eux
-          git ls-files | xargs sed -i -E 's/(#\s*define\s+MAX_SLAUNCH_ITEMS\s+)2000/\14000/'
-
-      - name: Patch makefile to use PSL1GHT instead of Sony SDK
-        run: |
-          set -eux
-          if [ -f makefile ]; then
-            cp makefile makefile.bak
-            awk 'NR==1{print "PS3DEV ?= /usr/local/ps3dev"; print "PSL1GHT ?= $(PS3DEV)"; print "include $(PSL1GHT)/ppu_rules"; skip=1} skip && NR<=2 { next } !skip || NR>2 { print }' makefile > makefile.new
-            mv makefile.new makefile
-            sed -i 's/ppu-lv2-gcc/ppu-gcc/g' makefile || true
-            sed -i 's/^CRT_HEAD/# CRT_HEAD/g; s/^CRT_TAIL/# CRT_TAIL/g' makefile || true
+    - name: Hunt for Valid PS3 Toolchain & Compile
+      run: |
+        # لیست تمام ایمیج‌های رسمی و احتمالی برای یافتن ایمیج سالم
+        IMAGES=(
+          "ghcr.io/ps3dev/ps3dev:ubuntu-22.04"
+          "ghcr.io/ps3dev/ps3dev:ubuntu-20.04"
+          "ghcr.io/ps3dev/ps3dev:ubuntu-latest"
+          "ghcr.io/ps3dev/ps3toolchain:ubuntu-22.04"
+          "ghcr.io/ps3dev/ps3toolchain:ubuntu-20.04"
+          "ghcr.io/ps3dev/ps3toolchain:latest"
+        )
+        
+        SUCCESS=0
+        for img in "${IMAGES[@]}"; do
+          echo "======================================"
+          echo "🔍 Trying to pull: $img"
+          if docker pull "$img"; then
+            echo "✅ Found valid image: $img"
+            echo "🚀 Compiling webMAN MOD with Smart Curve..."
+            docker run --rm -v ${{ github.workspace }}:/src -w /src "$img" /bin/bash -c "make"
+            SUCCESS=1
+            break
           fi
+        done
+        
+        if [ $SUCCESS -eq 0 ]; then
+          echo "❌ Error: Could not find any active PS3 docker image."
+          exit 1
+        fi
 
-      - name: Build
-        run: make -j"$(nproc)"
-
-      - name: Collect artifacts
-        run: |
-          mkdir -p out
-          find . -maxdepth 2 -type f -name 'webftp_server*.sprx' -exec cp -v {} out/ \; || true
-          ls -l out
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: webMAN-MOD-sprx
-          path: out
-          if-no-files-found: error
+    - name: Upload Output File
+      if: success()
+      uses: actions/upload-artifact@v3
+      with:
+        name: webftp_server.sprx
+        path: "*.sprx"
