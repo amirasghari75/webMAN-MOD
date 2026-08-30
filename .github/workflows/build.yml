@@ -1,4 +1,4 @@
-name: Build webMAN MOD (Final)
+name: Build webMAN MOD (The Missing Link)
 
 on:
   push:
@@ -17,18 +17,45 @@ jobs:
       with:
         submodules: true
 
-    - name: Pull and Compile
+    - name: Connect and Compile
       run: |
-        # لاگین با دسترسی خود اکشن برای رفع خطای denied
+        # ۱. لاگین موفق با توکن برای عبور از تحریم/قطعی گیت‌هاب (حل مشکل denied)
         echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
         
-        # دانلود دقیقاً همان ایمیج اصلی تیم ps3dev
-        docker pull ghcr.io/ps3dev/ps3dev:latest
+        # ۲. لیست تگ‌های زنده‌ای که تیم ps3dev جایگزین latest کرده‌اند
+        TAGS=(
+          "ghcr.io/ps3dev/ps3dev:ubuntu-latest"
+          "ghcr.io/ps3dev/ps3dev:ubuntu-22.04"
+          "ghcr.io/ps3dev/ps3toolchain:ubuntu-latest"
+          "ghcr.io/ps3dev/ps3toolchain:ubuntu-22.04"
+        )
         
-        # اجرای دستور make با ایمیج رسمی
-        docker run --rm -v ${{ github.workspace }}:/src -w /src ghcr.io/ps3dev/ps3dev:latest make
+        SUCCESS=0
+        for img in "${TAGS[@]}"; do
+          echo "==================================="
+          echo "🔍 Trying to pull: $img"
+          
+          if docker pull "$img"; then
+            echo "✅ Valid image found! Compiling Smart Curve..."
+            
+            # اجرای کامپایلر داخل کانتینر
+            if docker run --rm -v ${{ github.workspace }}:/src -w /src "$img" /bin/bash -c "make clean && make"; then
+              echo "🎉 Build Successful!"
+              SUCCESS=1
+              break
+            else
+              echo "⚠️ Compilation failed in $img, trying next..."
+            fi
+          fi
+        done
+        
+        if [ $SUCCESS -eq 0 ]; then
+          echo "❌ All attempts failed."
+          exit 1
+        fi
 
     - name: Upload Output File
+      if: success()
       uses: actions/upload-artifact@v4
       with:
         name: webftp_server.sprx
