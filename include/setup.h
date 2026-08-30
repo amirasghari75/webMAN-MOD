@@ -691,7 +691,7 @@ static void setup_form(char *buffer, char *html)
 					STR_PS2EMU, webman_config->ps2_rate, STR_FANSPEED); concat(buffer, html);
 
 	concat(buffer, "<tr><td>");
-	add_radio_button("temp\" onchange=\"fc.checked=1;", 3, "t_3", "Auto #2", _BR_, (webman_config->fanc == FAN_AUTO2), buffer);
+	add_radio_button("temp\" onchange=\"fc.checked=1;", 3, "t_3", "Smart Curve (Dynamic)", _BR_, (webman_config->fanc == FAN_AUTO2), buffer);
 	add_radio_button("temp\" onchange=\"fc.checked=0;", 2, "t_2", "SYSCON", "<td>", !(webman_config->fanc), buffer);
 
 #ifndef LITE_EDITION
