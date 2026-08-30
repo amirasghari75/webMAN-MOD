@@ -10,7 +10,7 @@ jobs:
 
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         submodules: true
 
@@ -46,7 +46,7 @@ jobs:
 
     - name: Upload Output File
       if: success()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: webftp_server.sprx
         path: "*.sprx"
