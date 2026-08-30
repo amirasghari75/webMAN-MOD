@@ -1,62 +1,51 @@
-name: Build webMAN MOD (The Missing Link)
+name: build-webman-mod (PSL1GHT)
 
 on:
-  push:
-  workflow_dispatch:
+  workflow_dispatch: {}
+
+# 👇 allow pulling images from ghcr.io
+permissions:
+  contents: read
+  packages: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      packages: read
-      contents: read
+    container:
+      image: ghcr.io/ps3dev/ps3dev:latest   # PSL1GHT toolchain preinstalled
 
     steps:
-    - name: Checkout Repo
-      uses: actions/checkout@v4
-      with:
-        submodules: true
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Connect and Compile
-      run: |
-        # ۱. لاگین موفق با توکن برای عبور از تحریم/قطعی گیت‌هاب (حل مشکل denied)
-        echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-        
-        # ۲. لیست تگ‌های زنده‌ای که تیم ps3dev جایگزین latest کرده‌اند
-        TAGS=(
-          "ghcr.io/ps3dev/ps3dev:ubuntu-latest"
-          "ghcr.io/ps3dev/ps3dev:ubuntu-22.04"
-          "ghcr.io/ps3dev/ps3toolchain:ubuntu-latest"
-          "ghcr.io/ps3dev/ps3toolchain:ubuntu-22.04"
-        )
-        
-        SUCCESS=0
-        for img in "${TAGS[@]}"; do
-          echo "==================================="
-          echo "🔍 Trying to pull: $img"
-          
-          if docker pull "$img"; then
-            echo "✅ Valid image found! Compiling Smart Curve..."
-            
-            # اجرای کامپایلر داخل کانتینر
-            if docker run --rm -v ${{ github.workspace }}:/src -w /src "$img" /bin/bash -c "make clean && make"; then
-              echo "🎉 Build Successful!"
-              SUCCESS=1
-              break
-            else
-              echo "⚠️ Compilation failed in $img, trying next..."
-            fi
+      - name: Ensure sLaunch cap is 4000
+        run: |
+          set -eux
+          git ls-files | xargs sed -i -E 's/(#\s*define\s+MAX_SLAUNCH_ITEMS\s+)2000/\14000/'
+
+      - name: Patch makefile to use PSL1GHT instead of Sony SDK
+        run: |
+          set -eux
+          if [ -f makefile ]; then
+            cp makefile makefile.bak
+            awk 'NR==1{print "PS3DEV ?= /usr/local/ps3dev"; print "PSL1GHT ?= $(PS3DEV)"; print "include $(PSL1GHT)/ppu_rules"; skip=1} skip && NR<=2 { next } !skip || NR>2 { print }' makefile > makefile.new
+            mv makefile.new makefile
+            sed -i 's/ppu-lv2-gcc/ppu-gcc/g' makefile || true
+            sed -i 's/^CRT_HEAD/# CRT_HEAD/g; s/^CRT_TAIL/# CRT_TAIL/g' makefile || true
           fi
-        done
-        
-        if [ $SUCCESS -eq 0 ]; then
-          echo "❌ All attempts failed."
-          exit 1
-        fi
 
-    - name: Upload Output File
-      if: success()
-      uses: actions/upload-artifact@v4
-      with:
-        name: webftp_server.sprx
-        path: "*.sprx"
+      - name: Build
+        run: make -j"$(nproc)"
+
+      - name: Collect artifacts
+        run: |
+          mkdir -p out
+          find . -maxdepth 2 -type f -name 'webftp_server*.sprx' -exec cp -v {} out/ \; || true
+          ls -l out
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: webMAN-MOD-sprx
+          path: out
+          if-no-files-found: error
